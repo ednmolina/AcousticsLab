@@ -73,18 +73,13 @@ for m in range(len(nz)):
         for z in range(len(nz)):
             f = c/2*np.sqrt((BesselList[m][n]/(np.pi * Rad))**2+(nz[z]/lz)**2)
             Frequencies.append([m, n, z, f])
-# Conver the list to a numpy array
-Frequencies = np.reshape(Frequencies, (len(nz)**3, 4))
 
-"Find the set of uniq frequecnies"
-unique_freq = list()
-for i in Frequencies.T[2]:
-    if i not in unique_freq:
-        unique_freq.append(i)
+# Convert the list to a numpy array
+Frequencies = np.reshape(Frequencies, (len(nz)**3, 4))
 
 print ("Eigenmodes for the Cylindrical Room")
 print ("nx  ny  nz freq")
-freq_set = Frequencies.T[3]
+freq_set = Frequencies[:,3]
 
 indicies = {value : [i for i, v in enumerate(freq_set) if v == value] for value in freq_set}
 
